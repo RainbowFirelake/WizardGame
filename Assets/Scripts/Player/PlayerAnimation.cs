@@ -1,14 +1,20 @@
 using UnityEngine;
 using WizardGame.Movables;
+using Zenject;
 
 [RequireComponent(typeof(MovableCharacterController))]
 public class PlayerAnimation : MonoBehaviour
 {
-    [SerializeField]
     private Animator _animator;
 
     [SerializeField, HideInInspector]
     private MovableCharacterController _movable;
+
+    [Inject]
+    private void Construct(Animator animator)
+    {
+        _animator = animator;
+    }
 
     private void OnValidate()
     {

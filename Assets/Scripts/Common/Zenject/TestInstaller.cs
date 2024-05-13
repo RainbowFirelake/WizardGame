@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class TestInstaller : MonoBehaviour
+public class TestInstaller : MonoInstaller
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void InstallBindings()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Container
+            .Bind<Animator>()
+            .FromComponentInChildren()
+            .AsTransient()
+            .WhenInjectedInto<PlayerAnimation>();
     }
 }
