@@ -21,7 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FAE_Water
-  m_Shader: {fileID: -6465566751694194690, guid: e02af2867afa32a46ae65b908b67dbed, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: e02af2867afa32a46ae65b908b67dbed,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -117,7 +118,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EdgeFade: 1
-    - _FlowSpeed: 1.02
+    - _FlowSpeed: 0.57
     - _Fresnelexponent: 4
     - _Glossiness: 0.806
     - _HighlightPanning: 0
@@ -156,7 +157,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 0.5019608}
-    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
     - _WaterColor: {r: 0.21323532, g: 0.67444223, b: 1, a: 1}
     - _WaterShallowColor: {r: 0, g: 0.9394503, b: 1, a: 1}
   m_BuildTextureStacks: []

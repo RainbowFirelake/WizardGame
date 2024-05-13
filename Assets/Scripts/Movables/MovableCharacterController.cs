@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace WizardGame.Movables
@@ -5,6 +6,8 @@ namespace WizardGame.Movables
     [RequireComponent(typeof(CharacterController))]
     public class MovableCharacterController : MonoBehaviour
     {
+        public event Action<bool> OnMove;
+
         [field: SerializeField]
         public MovableData MovableData { get; private set; }
         [field: SerializeField]
@@ -19,8 +22,23 @@ namespace WizardGame.Movables
 
         public void Move(Vector3 moveVector)
         {
+            CallMoveEvent(moveVector);
+
             Controller.Move(moveVector * MovableData.Speed);
             AlignForwardVectorIfMove(moveVector);
+            SimulateGravityEffect();
+        }
+
+        private void CallMoveEvent(Vector3 moveVector)
+        {
+            if (moveVector != Vector3.zero)
+            {
+                OnMove?.Invoke(true);
+            }
+            else
+            {
+                OnMove?.Invoke(false);
+            }
         }
 
         private void AlignForwardVectorIfMove(Vector3 moveVector)
@@ -29,6 +47,11 @@ namespace WizardGame.Movables
             {
                 _transform.forward = moveVector;
             }
+        }
+
+        private void SimulateGravityEffect()
+        {
+            Controller.Move(new Vector3(0, Physics.gravity.y * Time.deltaTime, 0));
         }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using WizardGame.Movables;
 
 namespace WizardGame.Player
@@ -13,10 +14,7 @@ namespace WizardGame.Player
         private void Start()
         {
             _camera = Camera.main;
-        }
 
-        private void OnValidate()
-        {
             if (_controllable == null)
             {
                 throw new System.Exception("Controllable component in PlayerInput not found!");
@@ -33,6 +31,22 @@ namespace WizardGame.Player
             var vectorWithCameraRotation = Quaternion.Euler(0, _camera.gameObject.transform.rotation.eulerAngles.y, 0) * inputVector;
 
             _controllable.Move(vectorWithCameraRotation);
+
+            HideCursorOnKeyPress();
+        }
+
+        private void HideCursorOnKeyPress()
+        {
+            if (Input.GetKeyDown(KeyCode.E) && Cursor.visible)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.E) && !Cursor.visible)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
     }
 }

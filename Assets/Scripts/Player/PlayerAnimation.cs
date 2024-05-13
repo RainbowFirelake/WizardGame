@@ -15,20 +15,18 @@ public class PlayerAnimation : MonoBehaviour
         _movable = GetComponent<MovableCharacterController>();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        SetMoveAnimation();
+        _movable.OnMove += SetMoveAnimation;
     }
 
-    private void SetMoveAnimation()
+    private void OnDestroy()
     {
-        if (_movable.Controller.velocity != Vector3.zero)
-        {
-            _animator.SetBool("IsMoving", true);
-        }
-        else
-        {
-            _animator.SetBool("IsMoving", false);
-        }
+        _movable.OnMove -= SetMoveAnimation;
+    }
+
+    private void SetMoveAnimation(bool flag)
+    {
+        _animator.SetBool("IsMoving", flag);
     }
 }
